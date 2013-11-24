@@ -1,0 +1,124 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+@import url('http://fonts.googleapis.com/css?family=Marck+Script');
+
+@media (min-width: 768px){
+	.navbar {
+		border-radius: 0px;
+	}
+}
+
+.wrap {
+	position: relative;
+}
+
+.navbar {
+	margin-top: 0px; 
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #11ACDB),
+		color-stop(1, #456A85)
+	);
+	background-image: -o-linear-gradient(bottom, #11ACDB 0%, #456A85 100%);
+	background-image: -moz-linear-gradient(bottom, #11ACDB 0%, #456A85 100%);
+	background-image: -webkit-linear-gradient(bottom, #11ACDB 0%, #456A85 100%);
+	background-image: -ms-linear-gradient(bottom, #11ACDB 0%, #456A85 100%);
+	background-image: linear-gradient(to bottom, #11ACDB 0%, #456A85 100%);
+	border: none;
+	border-radius: 0px;
+}
+
+.navbar-header {
+	float: none;
+}
+
+.row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.headers {
+	position: relative;
+}
+
+.rbt, .lbt {
+	color: #FFFFFF;
+	margin-top: 7px;
+}
+
+.rbt {
+	position: absolute;
+	margin: 7px 5px;
+	left: 0px;
+}
+
+.lbt {
+	position: absolute;
+	margin: 7px 5px;
+	right: 0px;
+}
+
+.btn:hover, .btn:focus {
+	color: #F0F0F0;
+	text-decoration: none;
+}
+
+.logo h1{
+	font-size: 1.7em;
+	color: #FFFFFF;
+	font-family: 'Marck Script', cursive;
+	text-align: center;
+}
+
+.toolbar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #1A4E59),
+	color-stop(1, #404040)
+	);
+	background-image: -o-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -moz-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -webkit-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: linear-gradient(to bottom, #1A4E59 0%, #404040 100%);
+	border: none;
+}
+
+.toolbar:hover {
+	background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #1A4E59),
+	color-stop(1, #4F4F4F)
+	);
+	background-image: -o-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
+	background-image: -moz-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
+	background-image: -webkit-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
+	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
+	background-image: linear-gradient(to bottom, #1A4E59 0%, #4F4F4F 100%);
+}
+
+.toolbar .camera {
+	color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
