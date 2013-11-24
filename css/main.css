@@ -93,6 +93,7 @@
 	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
 	background-image: linear-gradient(to bottom, #1A4E59 0%, #404040 100%);
 	border: none;
+	border-radius: 0px;
 }
 
 .toolbar:hover {
