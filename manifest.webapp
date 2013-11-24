@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "name": "ShotNote",
+  "description": "ShotNote is a Mobile Web App that provides the user to make note with photos",
+  "type": "privileged",
+  "launch_path": "index.html",
+  "developer": {
+    "name": "KD.Chang",
+    "url": "https://github.com/KD-Chang/"
+  },
+  "permissions": {
+    "geolocation": {},
+    "desktop-notification":{},
+    "systemXHR": {},
+    "device-storage:pictures": { "access": "readonly" },
+    "contacts":{ "access": "readcreate" }
+  },
+  "orientation": "portrait-primary",
+  "locales": {
+    "en-US": {
+      "name": "ShotNote",
+      "description": "ShotNote is a Mobile Web App that provides the user to make note with photos"
+    }
+  },
+  "default_locale": "en-US",
+  "icons": {
+    "128": "img/logo.png"
+  }
+}
