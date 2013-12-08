@@ -11,9 +11,9 @@
 	}
 }
 
-body {
+/*body {
 	overflow: hidden;
-}
+}*/
 
 .view-port{
 	overflow-x: hidden;
@@ -138,11 +138,23 @@ body {
 	color: #FFFFFF;
 }
 
+.init-img {
+	display: inline-block;
+	text-align: center;
+	opacity: 0.1;
+}
+
+.tip-head {
+	margin-top: 40px;
+	margin-left: 5px;
+}
+
 /*Panel*/
 .left-panel, .right-panel {
 	width: 225px;
 	height: 100%;
 	background-color: #444444;
+	color: #000000;
 	position: absolute;
 	z-index: 1; 
 	display: none;
@@ -150,9 +162,35 @@ body {
 	overflow-x: hidden;
 }
 
+.icon-add{
+	color: #000000;
+}
+
 .left-panel {
 	left: 0;
 	top: 0;
+}
+
+.nb-list > li {
+	list-style: none;
+	margin-left: -40px;
+	padding: 10px 10px;
+	color: #FFFFFF;
+	font-size: 20px;
+	border-bottom: solid 1px #FFFFFF;
+	background-color: #DDAA00;
+}
+
+.nb-list > .nb-list-head{
+	background: black;
+	padding: 0.5px 0px;
+	text-align: center;
+}
+
+.search {
+	padding: 8px;
+	margin-top: 6px;
+	margin-bottom: 6px;
 }
 
 .right-panel {
@@ -168,6 +206,7 @@ body {
 	-ms-transform: translateX(225px);
 	-o-transform: translateX(225px);
 	transform: translateX(225px);
+	overflow: hidden;
 }
 
 .right {
@@ -176,6 +215,7 @@ body {
 	-ms-transform: translateX(-225px);
 	-o-transform: translateX(-225px);
 	transform: translateX(-225px);
+	overflow: hidden;
 }
 
 

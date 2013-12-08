@@ -1,4 +1,18 @@
 jQuery(function($){
+	window.Note = Backbone.Model.extend({
+		initialize: function(){
+			console.log("Model");
+		},
+		title: null
+	});
+
+	window.Notes = Backbone.Collection.extend({
+		initialize: function(options){
+			console.log("collection!");
+			this.bind('add', options.view.writeNewNote);
+		}
+	});
+
 	window.MainView = Backbone.View.extend({
 		el: $("body"),
 
@@ -61,9 +75,28 @@ jQuery(function($){
 	});
 
 	window.LeftPanelView = Backbone.View.extend({
-		className: 'left-panel',
+		el: '#left-panel',
 		initialize: function(){
 			console.log('left-panel!');
+			this.notes = new Notes({view: this});
+		},
+		events: {
+			'click #add-note': 'newNote'
+		},
+		newNote: function(){
+			var title = prompt('Key the Notebook name');
+			this.noteModel = new Note({'title': title});
+			this.notes.add(this.noteModel);
+		},
+		writeNewNote: function(){
+			if($('.wrap').hasClass('left')){
+				$('.wrap').removeClass('left');
+				$('.left-panel').hide();
+			}
+			else{
+				$('.wrap').addClass('left');
+				$('.left-panel').show();
+			}
 		}
 	});
 
