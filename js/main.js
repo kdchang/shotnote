@@ -3,14 +3,40 @@ jQuery(function($){
 		initialize: function(){
 			console.log("Model");
 		},
-		title: null
+		defaults: {
+			title: null,
+			group: null,
+			tag: null,
+			time: null,
+			memo: null,
+			img: null,
+			time: null,
+		}
 	});
 
 	window.Notes = Backbone.Collection.extend({
-		initialize: function(options){
+		initialize: function(){
 			console.log("collection!");
-			this.bind('add', options.view.writeNewNote);
+		},
+		model: Note
+	});
+
+	window.Notebook = Backbone.Model.extend({
+		initialize: function(){
+			console.log('Notebook!')
+		},
+		defaults: {
+			booktitle: null,
+			time: null 
 		}
+	});
+
+	window.Notebooks = Backbone.Collection.extend({
+		initialize: function(options){
+			console.log('Notebooksss!');
+			this.bind('add', options.view.render);
+		},
+		model: Notebook
 	});
 
 	window.MainView = Backbone.View.extend({
@@ -80,17 +106,22 @@ jQuery(function($){
 
 	window.LeftPanelView = Backbone.View.extend({
 		el: '#left-panel',
+		template: $('#nb-list-tmpl').template(),
+
 		initialize: function(){
 			console.log('left-panel!');
-			this.notes = new Notes({view: this});
+			_.bindAll(this, 'render', 'newNoteBook', 'writeNewNote', 'deleteNoteBook');
+			this.notebooks = new Notebooks({view: this});
 		},
 		events: {
-			'click #add-note': 'newNote'
+			'click #add-notebook': 'newNoteBook',
+			'dblclick .nb-list-items': 'deleteNoteBook'
 		},
-		newNote: function(){
+		newNoteBook: function(){
 			var title = prompt('Key the Notebook name');
-			this.noteModel = new Note({'title': title});
-			this.notes.add(this.noteModel);
+			this.notebookModel = new Notebook({'booktitle': title});
+			this.notebooks.add(this.notebookModel);
+			this.notes = new Notes({})
 		},
 		writeNewNote: function(){
 			if($('.wrap').hasClass('left')){
@@ -101,6 +132,15 @@ jQuery(function($){
 				$('.wrap').addClass('left');
 				$('.left-panel').show();
 			}
+		},
+		deleteNoteBook: function(e){
+			$(e.currentTarget).remove();
+			this.notebooks.remove(this.notebooks.models);
+		},
+		render: function(){
+			var element = jQuery.tmpl(this.template, this.notebooks.toJSON());
+			$('#nb-list-item').html(element);
+			return this;
 		}
 	});
 

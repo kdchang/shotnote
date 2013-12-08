@@ -139,14 +139,14 @@
 }
 
 .init-img {
-	display: inline-block;
-	text-align: center;
+	display: block;
 	opacity: 0.1;
+	margin: 0 auto;
 }
 
 .tip-head {
 	margin-top: 40px;
-	margin-left: 5px;
+	text-align: left;
 }
 
 /*Panel*/
@@ -174,7 +174,7 @@
 .nb-list > li {
 	list-style: none;
 	margin-left: -40px;
-	padding: 10px 10px;
+	padding: 10px 17px;
 	color: #FFFFFF;
 	font-size: 20px;
 	border-bottom: solid 1px #FFFFFF;
@@ -182,15 +182,28 @@
 }
 
 .nb-list > .nb-list-head{
-	background: black;
-	padding: 0.5px 0px;
-	text-align: center;
+	background: #000000;
+	padding: 0.5px 17px;
+	border-bottom: solid 1px #FFFFFF;
+}
+
+.add-notebook {
+	color: #FFFFFF;
+	margin-top: 7px;
+	position: absolute;
+	margin: 7px 5px;
+	right: 0px;
 }
 
 .search {
-	padding: 8px;
-	margin-top: 6px;
+	padding: 7px 11px;
+	margin-top: 10px;
+	margin-left: -23px;
 	margin-bottom: 6px;
+}
+
+.search-btn {
+	margin-left: -23px;
 }
 
 .right-panel {

@@ -59,19 +59,18 @@
           </div>
 
           <!--Toolbar-->
-          <div class="toolbars">
+<!--           <div class="toolbars">
             <button class="toolbar" id="camera" type="buton">
               <span class="glyphicon glyphicon-camera btn btn-lg camera"></span>
             </button>
-          </div>
+          </div> -->
         </div>
+
         <!--LeftPanel-->
         <div data-type="sidebar" class="left-panel" id="left-panel">
           <ul class="nb-list">
-            <li class="nb-list-head"><h3>Notebooks</h3></li>
-            <li>Firefox OS</li>
-            <li>Firefox Boys</li>
-            <li>Firefox Girls</li>
+            <li class="nb-list-head" id="nb-list-head"><h3>Notebooks</h3><span class="glyphicon glyphicon-plus btn btn-lg add-notebook" id="add-notebook"></span></li>
+            <li id="nb-list-item"></li>
           </ul>
         </div>
 
@@ -79,14 +78,15 @@
         <div data-type="sidebar" class="right-panel" id="right-panel">
           <ul class="nb-list">
             <li class="nb-list-head"><h3>Search</h3></li>
-            <input class="search" type="text" placeholder="Title, Tags, Keywords"><button type="button" class="btn btn-primary">Submit</button>
+            <input class="search" type="text" placeholder="Title, Tags, Keywords"><button type="button" class="btn btn-primary search-btn">Submit</button>
           </ul>
         </div>
       </div>
-
-      <div>
-        
-      </div>
+      <!-- <span>(${count})</span> -->
+      <!-- Template !-->
+      <script type="text/template" id="nb-list-tmpl">
+        <li class="nb-list-items">${booktitle}</li>
+      </script>
 
         <!--Script-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -95,7 +95,8 @@
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/underscore.js"></script>
         <script src="js/vendor/backbone.js"></script>
-  
+        <script src="js/vendor/backbone.localStorage-min.js"></script>
+        <script src="js/vendor/jquery.tmpl.min.js"></script>
         <script src="js/main.js"></script>
 
         <script>
