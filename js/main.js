@@ -32,10 +32,12 @@ jQuery(function($){
 			if($('.wrap').hasClass('left')){
 				$('.wrap').removeClass('left');
 				$('.left-panel').hide();
+				$('.toolbars').show();
 			}
 			else{
 				$('.wrap').addClass('left');
 				$('.left-panel').show();
+				$('.toolbars').hide();
 			}
 		},
 
@@ -44,10 +46,12 @@ jQuery(function($){
 			if($('.wrap').hasClass('right')){
 				$('.wrap').removeClass('right');
 				$('.right-panel').hide();
+				$('.toolbars').show();
 			}
 			else{
 				$('.wrap').addClass('right');
 				$('.right-panel').show();
+				$('.toolbars').hide();
 			}
 		},
 
