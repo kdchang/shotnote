@@ -10,7 +10,7 @@ jQuery(function($){
 
 		initialize: function(){
 			console.log('AppView');
-			_.bindAll(this, 'cameraActivity', 'leftPanel');
+			_.bindAll(this, 'cameraActivity', 'leftPanel', 'rightPanel');
 		},
 
 		leftPanel: function(){
@@ -21,7 +21,6 @@ jQuery(function($){
 			}
 			else{
 				$('.wrap').addClass('left');
-
 				$('.left-panel').show();
 			}
 		},
@@ -34,7 +33,6 @@ jQuery(function($){
 			}
 			else{
 				$('.wrap').addClass('right');
-
 				$('.right-panel').show();
 			}
 		},
@@ -69,6 +67,14 @@ jQuery(function($){
 		}
 	});
 
+	window.RightPanelView = Backbone.View.extend({
+		className: 'right-panel',
+		initialize: function(){
+			console.log('right-panel!');
+		}
+	});
+
 	window.Main = new MainView;
 	window.LeftPanel = new LeftPanelView;
+	window.RightPanel = new RightPanelView;
 });
