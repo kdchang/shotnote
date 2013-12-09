@@ -43,14 +43,15 @@ jQuery(function($){
 		el: $("body"),
 
 		events: {
-			'click #camera': 'cameraActivity',
+			'click #init-img': 'cameraActivity',
 			'click #left-btn': 'leftPanel',
-			'click #right-btn': 'rightPanel'
+			'click #right-btn': 'cameraActivity',
+			'click #musk': 'muskSlide'
 		},
 
 		initialize: function(){
 			console.log('AppView');
-			_.bindAll(this, 'cameraActivity', 'leftPanel', 'rightPanel');
+			_.bindAll(this, 'cameraActivity', 'leftPanel', 'rightPanel', 'muskSlide');
 		},
 
 		leftPanel: function(){
@@ -64,6 +65,7 @@ jQuery(function($){
 				$('.wrap').addClass('left');
 				$('.left-panel').show();
 				$('.toolbars').hide();
+				$('.musk').show();
 			}
 		},
 
@@ -78,6 +80,14 @@ jQuery(function($){
 				$('.wrap').addClass('right');
 				$('.right-panel').show();
 				$('.toolbars').hide();
+			}
+		},
+
+		muskSlide: function(){
+			if($('.wrap').hasClass('left')){
+				$('.wrap').removeClass('left');
+				$('.left-panel').hide();
+				$('#musk').hide();
 			}
 		},
 
@@ -121,7 +131,7 @@ jQuery(function($){
 			var title = prompt('Key the Notebook name');
 			this.notebookModel = new Notebook({'booktitle': title});
 			this.notebooks.add(this.notebookModel);
-			this.notes = new Notes({})
+			this.notes = new Notes({});
 		},
 		writeNewNote: function(){
 			if($('.wrap').hasClass('left')){
