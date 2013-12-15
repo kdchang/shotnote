@@ -26,6 +26,50 @@
           <!--Header-->
           <div>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+              <div class="navbar-header" id="navbar-header">
+                <div class="row headers">
+                  <div class="col-xs-3">
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="logo" id="logo"><h1>ShotNote</h1></div>
+                  </div>
+                  <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-search btn btn-lg rbt" id="right-btn"></span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <!--ListItem-->
+          <div class="content">
+              <div class="result" id="result">
+                <ul class="item-list" id="item-list">
+                  <li class="list-items" data-id="${id}"><img class="note-img" src="${img}"><h4>${title}</h4><h5 class="label label-info">${tag}</h5><p>${time}</p></li>
+                </ul>
+              </div>
+          </div>
+
+          <!--Toolbar-->
+          <div class="toolbars">
+            <button class="toolbar" id="camera" type="buton">
+              <span class="glyphicon glyphicon-camera btn btn-lg camera"></span>
+            </button>
+          </div>
+          <div class="musk" id="musk"></div>
+        </div>
+      </div>
+      <!-- <span>(${count})</span> -->
+      <!-- Template !-->
+      <!--Empty Template-->
+      <script type="text/template" id="empty-list">
+      <div class="view-port" id="view-port">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="wrap" id="wrap">
+          <!--Header-->
+          <div>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="navbar-header">
                 <div class="row headers">
                   <div class="col-xs-3">
@@ -41,6 +85,16 @@
               </div>
             </nav>
           </div>
+          <div class="content">
+              <div class="result" id="result">
+                <div class="row">
+                  <div class="col-xs-12">
+                      <h2 class="tip-head">Take a Photo and Write a Note.</h2>
+                      <img class="init-img" src="./img/note-19-icon-256.png">
+                  </div>
+                </div>
+              </div>
+          </div>
 
           <!--Toolbar-->
           <div class="toolbars">
@@ -50,95 +104,110 @@
           </div>
           <div class="musk" id="musk"></div>
         </div>
-
-        <!--LeftPanel-->
-<!--         <div data-type="sidebar" class="left-panel" id="left-panel">
-          <ul class="nb-list">
-            <li class="nb-list-head" id="nb-list-head"><h3>Notebooks</h3><span class="glyphicon glyphicon-plus btn btn-lg add-notebook" id="add-notebook"></span></li>
-            <li id="nb-list-item"></li>
-          </ul>
-        </div> -->
-
-        <!--RightPanel-->
-<!--         <div data-type="sidebar" class="right-panel" id="right-panel">
-          <ul class="nb-list">
-            <li class="nb-list-head"><h3>Search</h3></li>
-            <input class="search" type="text" placeholder="Title, Tags, Keywords"><button type="button" class="btn btn-primary search-btn">Submit</button>
-          </ul>
-        </div> -->
       </div>
-      <!-- <span>(${count})</span> -->
-      <!-- Template !-->
+      </script>
+
+      <!--Main View-->
+      <script type="text/template" id="main-view">
+        <div class="view-port" id="view-port">
+          <!--[if lt IE 7]>
+              <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+          <![endif]-->
+          <div class="wrap" id="wrap">
+            <!--Header-->
+            <div>
+              <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header" id="navbar-header">
+                  <div class="row headers">
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-xs-6">
+                      <div class="logo" id="logo"><h1>ShotNote</h1></div>
+                    </div>
+                    <div class="col-xs-3">
+                      <span class="glyphicon glyphicon-search btn btn-lg rbt" id="right-btn"></span>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <!--ListItem-->
+            <div class="content">
+                <div class="result" id="result">
+                  <ul class="item-list" id="item-list">
+                    <li class="list-items" data-id="${id}"></li>
+                  </ul>
+                </div>
+            </div>
+
+            <!--Toolbar-->
+            <div class="toolbars">
+              <button class="toolbar" id="camera" type="buton">
+                <span class="glyphicon glyphicon-camera btn btn-lg camera"></span>
+              </button>
+            </div>
+            <div class="musk" id="musk"></div>
+          </div>
+        </div>        
+      </script>
+
+      <!--MainNav-->
+      <script type="text/template" id="main-nav">
+        <div class="navbar-header" id="navbar-header">
+          <div class="row headers">
+            <div class="col-xs-3">
+            </div>
+            <div class="col-xs-6">
+              <div class="logo" id="logo"><h1>ShotNote</h1></div>
+            </div>
+            <div class="col-xs-3">
+              <span class="glyphicon glyphicon-search btn btn-lg rbt" id="right-btn"></span>
+            </div>
+          </div>
+        </div>
+      </script>
 
       <!--Main List-->
       <script type="text/template" id="main-list">
-          <div class="wrap" id="wrap">
+          <ul class="item-list" id="item-list">
+            <li class="list-items" data-id="${id}"><img class="note-img" src="${img}"><h4>${title}</h4><h5 class="label label-info">${tag}</h5><p>${time}</p></li>
+          </ul>
+      </script>
+
+      <!--Create a Note-->
+      <script type="text/template" id="create-a-note">
+        <div class="wrap" id="wrap">
           <div>
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
               <div class="navbar-header">
                 <div class="row headers">
                   <div class="col-xs-3">
-                     <span class="glyphicon glyphicon-align-justify btn btn-lg lbt" id="left-btn"></span> 
+                  <span class="glyphicon glyphicon-chevron-left btn btn-lg lbt" id="check"></span>
                   </div>
                   <div class="col-xs-6">
                     <div class="logo" id="logo"><h1>ShotNote</h1></div>
                   </div>
                   <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-search btn btn-lg rbt" id="right-btn"></span>
+                    <span class="glyphicon glyphicon-ok btn btn-lg rbt" id="edit-done"></span>
                   </div>
                 </div>
               </div>
             </nav>
           </div>
-
-          <div class="content">
-              <div class="result" id="result">
-                <ul class="item-list" id="item-list">
-                  <li class="list-items"><img class="note-img" src='${img}'><h4>${title}</h4><h5 class="label label-info">${tag}</h5><p>${time}</p></li>
-                </ul>
-              </div>
+          <div class="btn-group operation" data-id="${id}">
+            <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
+            <button type="button" class="btn btn-lg btn-default" id="
+            draw" data-id="${id}">Draw</button>
+            <button type="button" class="btn btn-lg btn-default" id="edit-note" data-id="${id}">Edit</button>
+            <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
           </div>
-          <div class="toolbars">
-            <button class="toolbar" id="camera" type="buton">
-              <span class="glyphicon glyphicon-camera btn btn-lg camera"></span>
-            </button>
+          <div class="note-content">
+            <div id="take-img"></div>
+            <h2 class="title" id="title">${title}</h2>
+            <h3 class="tag label label-info" id="tag">${tag}</h3>
+            <p class="time" id="time">${time}</p>
+            <h4 class="memo" id="memo">${memo}</h4>
           </div>
-          <div class="musk" id="musk"></div>
-        </div>
-      </script>
-
-      <!--Create a Note-->
-      <script type="text/template" id="create-a-note">
-        <div>
-          <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="navbar-header">
-              <div class="row headers">
-                <div class="col-xs-3">
-                <span class="glyphicon glyphicon-chevron-left btn btn-lg lbt" id="check"></span>
-                </div>
-                <div class="col-xs-6">
-                  <div class="logo" id="logo"><h1>ShotNote</h1></div>
-                </div>
-                <div class="col-xs-3">
-                  <span class="glyphicon glyphicon-ok btn btn-lg rbt" id="ok"></span>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="btn-group operation">
-          <button type="button" class="btn btn-default btn-lg active" id="info">Info</button>
-          <button type="button" class="btn btn-lg btn-default" id="
-          draw">Draw</button>
-          <button type="button" class="btn btn-lg btn-default" id="edit-note">Edit</button>
-          <button type="button" class="btn btn-lg btn-default">Delete</button>
-        </div>
-        <div class="note-content">
-          <div id="take-img"></div>
-          <h2 class="title" id="title">${title}</h2>
-          <h3 class="tag label label-info" id="tag">${tag}</h3>
-          <p class="time" id="time">${time}</p>
-          <h4 class="memo" id="memo">${memo}</h4>
         </div>
       </script>
       
@@ -162,11 +231,11 @@
           </nav>
         </div>
         <div class="btn-group operation">
-          <button type="button" class="btn btn-default btn-lg active" id="info">Info</button>
+          <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
           <button type="button" class="btn btn-lg btn-default active" id="
-          draw">Draw</button>
-          <button type="button" class="btn btn-lg btn-default" id="edit-note">Edit</button>
-          <button type="button" class="btn btn-lg btn-default">Delete</button>
+          draw" data-id="${id}">Draw</button>
+          <button type="button" class="btn btn-lg btn-default" id="edit-note" data-id="${id}">Edit</button>
+          <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
         </div>
         <div id="take-img"></div>
         <buttton>Save Draw</button> 
@@ -185,33 +254,33 @@
                   <div class="logo" id="logo"><h1>ShotNote</h1></div>
                 </div>
                 <div class="col-xs-3">
-                  <span class="glyphicon glyphicon-ok btn btn-lg rbt" id="ok"></span>
+                  <span class="glyphicon glyphicon-ok btn btn-lg rbt" id="edit-done"></span>
                 </div>
               </div>
             </div>
           </nav>
         </div>
         <div class="btn-group operation">
-          <button type="button" class="btn btn-default btn-lg" id="info">Info</button>
+          <button type="button" class="btn btn-default btn-lg" id="info" data-id="${id}">Info</button>
           <button type="button" class="btn btn-lg btn-default" id="
-          draw">Draw</button>
-          <button type="button" class="btn btn-lg btn-default active" id="edit-note">Edit</button>
-          <button type="button" class="btn btn-lg btn-default">Delete</button>
+          draw" data-id="${id}">Draw</button>
+          <button type="button" class="btn btn-lg btn-default active" id="edit-note" data-id="${id}">Edit</button>
+          <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
         </div>
         <div class="note-content">
-          <div id="div-title"><h2 class="title" id="title">${title}</h2><button id="edit-title">Edit</button></div>
-          <h3 class="tag label label-info" id="tag">${tag}</h3><button id="edit-tag">Edit</button>
-          <p class="time" id="time">${time}</p><button id="edit-time">Edit</button>
-          <h4 class="memo" id="memo">${memo}</h4><button id="edit-memo">Edit</button>
+          <div id="div-title"><h2 class="title" id="title">Title : ${title}</h2><button id="edit-title" data-id="${id}">Edit</button></div>
+          <div id="div-tag"><h3 class="tag label label-info" id="tag">Tag : ${tag}</h3><button id="edit-tag" data-id="${id}">Edit</button></div>
+          <div id="div-time"><p class="time" id="time">Time : ${time}</p><button id="edit-time" data-id="${id}">Edit</button></div>
+          <div id="div-memo"><h4 class="memo" id="memo">Memo :</h4><p>${memo}</p><button id="edit-memo" data-id="${id}">Edit</button></div>
         </div>
       </script>
-
+      <!--Edit Title-->
       <script type="text/template" id="edit-title">
-        <input id="input-title" value="${title}" placeholder="Please Key in the Title"><button id="save-title-btn">Save</button>
+        Title : <input id="input-title" value="${title}" placeholder="Please Key in the Title"><button id="save-title-btn" data-id="${id}">Save</button>
       </script>
-
+      <!--Save Title-->
       <script type="text/template" id="save-title">
-        <h2 class="title" id="title">${title}</h2><button id="edit-title">Edit</button>
+        <h2 class="title" id="title">${title}</h2><button id="edit-title" data-id="${id}">Edit</button>
       </script>
 
         <!--Script-->

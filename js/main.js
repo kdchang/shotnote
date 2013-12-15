@@ -1,23 +1,29 @@
 jQuery(function($){
+	var cid = 1;
 	window.Note = Backbone.Model.extend({
 		initialize: function(){
 			console.log("Model");
 			//alert('New Model');
+			this.bind("remove", function() {
+			  this.destroy();
+			});
 		},
 		defaults: {
-			title: '',
+			id: 0,
+			title: '123',
 			tag: 'Firefox',
 			time: '2013/12/10',
 			memo: 'Firefox OS is awesome',
 			img: './img/firefox-256.jpg'
 		}
+
 	});
 
 	window.Notes = Backbone.Collection.extend({
 		initialize: function(options){
 			console.log("Collection!");
 			//alert(options.view);
-			this.bind('add', options.view.renderModel);
+			//this.bind('add', options.view.render);
 		},
 
 		localStorage: new Store("Notebook"),
@@ -28,7 +34,13 @@ jQuery(function($){
 	window.MainView = Backbone.View.extend({
 		el: $("body"),
 
-		template: $('#main-list').template(),
+		template: $('#main-view').template(),
+
+		navTemplate: $('#main-nav').template(),
+
+		mainListTemplate: $('#main-list').template(),
+
+		emptyTemplate: $('#empty-list').template(),
 
 		createNoteTemplate: $('#create-a-note').template(),
 
@@ -42,16 +54,21 @@ jQuery(function($){
 			'click #right-btn': 'search',
 			'click #camera': 'cameraActivity',
 			'click #check': 'leftNote',
-			'click #ok': 'doneNote',
+			'click #edit-done': 'doneNote',
+			'click #info': 'showNote',
 			'click #edit-note': 'editNote',
 			'click #edit-title': 'editTitle',
 			'click #save-title-btn': 'saveTitle',
+			//click the list in the main view
+			'click .list-items': 'showNote',
+			'click #delete-note': 'delteNote',
 			'click #musk': 'muskSlide'
+
 		},
 
 		initialize: function(){
 			console.log('AppView');
-			_.bindAll(this, 'search', 'render', 'leftNote', 'doneNote', 'editNote', 'editTitle', 'saveTitle', 'cameraActivity');
+			_.bindAll(this, 'search', 'render', 'showNote', 'leftNote', 'doneNote', 'editNote', 'delteNote', 'editTitle', 'saveTitle', 'cameraActivity');
 			this.notes = new Notes({view: this});
 			this.render();
 			// this.model.bind('change', this.render);
@@ -61,57 +78,94 @@ jQuery(function($){
 		search: function(){
 			var title = prompt('Please Key Title');
 		    this.noteModel = new Note({'title': title});
+		    var element = jQuery.tmpl(this.template, this.notes.toJSON());
+			$('#view-port').html(element);
 			this.notes.add(this.noteModel);
 		},
 
 		render: function(){
-			var element = jQuery.tmpl(this.template, this.notes.toJSON());
-			$('#view-port').html(element);
+			var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
+			$('#item-list').html(element);
 			// alert('render');
 			return this;
 		},
 
-		renderModel: function(){
-			var element = jQuery.tmpl(this.saveTitleTemplate, this.noteModel.toJSON());
-			$('#div-title').html(element);
-			// alert('render');
+		showNote: function(e){
+			//alert(1);
+			console.log($(e.currentTarget).attr('data-id'));
+			alert($(e.currentTarget).attr('data-id'));
+			var element = jQuery.tmpl(this.createNoteTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
+			alert(this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
+			$('#view-port').html(element);
 			return this;
 		},
 
 		leftNote: function(){
 			var check = confirm('Left ?');
 			if(check){
-				var element = jQuery.tmpl(this.template, this.notes.toJSON());
-				$('#view-port').html(element);
+				var mainView = jQuery.tmpl(this.template);
+				$('#view-port').html(mainView);
+				var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
+				$('#item-list').html(element);
 			}
 		},
 
 		doneNote: function(){
-			this.noteModel = new Note({'title': title});
-			this.notes.add(this.noteModel);
-			var element = jQuery.tmpl(this.template, this.notes.toJSON());
+			alert('edit-done');
+			var mainView = jQuery.tmpl(this.template);
+			$('#view-port').html(mainView);
+			var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
+			$('#item-list').html(element);
+		},
+
+		editNote: function(e){
+			alert($(e.currentTarget).attr('data-id'));
+			var element = jQuery.tmpl(this.editNoteTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
 			$('#view-port').html(element);
 		},
 
-		editNote: function(){
-			var element = jQuery.tmpl(this.editNoteTemplate, this.notes.toJSON());
-			$('#view-port').html(element);
-		},
-
-		editTitle: function(){
-			var element = jQuery.tmpl(this.editTitleTemplate, this.notes.toJSON());
+		editTitle: function(e){
+			var element = jQuery.tmpl(this.editTitleTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
 			$('#div-title').html(element);
 		},
 
-		saveTitle: function(){
+		saveTitle: function(e){
 			var editTitle = $('#input-title').val();
 			// alert(editTitle);
-			this.noteModel = new Note({'title': editTitle});
-			this.notes.add(this.noteModel);
+			this.notes.get($(e.currentTarget).attr('data-id')).set({'title': editTitle});
 			//alert(this.noteModel);
 		    			
-			var element = jQuery.tmpl(this.saveTitleTemplate, this.noteModel.toJSON());
+			var element = jQuery.tmpl(this.saveTitleTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
 			$('#div-title').html(element);
+		},
+
+		delteNote: function(e){
+			//alert($(e.currentTarget).attr('data-id'));
+
+			// cid--;
+			// for(var i = this.notes.models[$(e.currentTarget).attr('data-id')]+1; i < this.notes.length; i++){
+			// 	alert('id!!!');
+			// 	alert(this.notes.models[i].get('id'));
+			// 	this.notes.models[i].set({'id': parseInt(this.notes.models[i].get('id')) - 1});
+			// }
+			var de = confirm('Delete or NOT ?');
+			if(de){
+				this.notes.remove(this.notes.get($(e.currentTarget).attr('data-id')));
+	
+				if(this.notes.length > 0){
+					alert($(e.currentTarget).attr('data-id'));
+					var mainView = jQuery.tmpl(this.template);
+					$('#view-port').html(mainView);
+					var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
+					$('#item-list').html(element);
+				}
+				else{
+					alert('empty');
+					var element = jQuery.tmpl(this.emptyTemplate);
+					$('#view-port').html(element);
+				}
+			}
+
 		},
 
 		cameraActivity: function(e){
@@ -131,15 +185,21 @@ jQuery(function($){
 		        // if (!activityRequest.result.blob){
 		        // pick.onsuccess = function () { 
 			    // Create image and set the returned blob as the src
+			    self.noteModel = new Note();
+			    self.noteModel.set({'id': self.noteModel.cid});
+			    // cid++;
 
-		    	var element = jQuery.tmpl(self.createNoteTemplate);
-				$('#wrap').html(element);
+			    //alert(cid);
+				self.notes.add(self.noteModel);
+		    	var element = jQuery.tmpl(self.createNoteTemplate, self.noteModel.toJSON());
+				$('#view-port').html(element);
 			    var img = document.createElement("img");
 			    img.src = window.URL.createObjectURL(this.result.blob);
-			 
 			    // Present that image in your app
 			    var imagePresenter = document.querySelector("#take-img");
 			    imagePresenter.appendChild(img);
+			    
+
 
 				// }
 			};
