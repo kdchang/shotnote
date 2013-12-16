@@ -273,19 +273,6 @@ jQuery(function($){
 		// 	}
 		// },
 
-		// rightPanel: function(){
-		// 	console.log('right-btn');
-		// 	if($('.wrap').hasClass('right')){
-		// 		$('.wrap').removeClass('right');
-		// 		$('.right-panel').hide();
-		// 		$('.toolbars').show();
-		// 	}
-		// 	else{
-		// 		$('.wrap').addClass('right');
-		// 		$('.right-panel').show();
-		// 		$('.toolbars').hide();
-		// 	}
-		// },
 
 
 		// muskSlide: function(){
@@ -295,25 +282,3 @@ jQuery(function($){
 		// 		$('#musk').hide();
 		// 	}
 		// },
-
-			// window.Notebook = Backbone.Model.extend({
-	// 	initialize: function(){
-	// 		console.log('Notebook!')
-	// 	},
-	// 	defaults: {
-	// 		booktitle: null,
-	// 		time: null 
-	// 	}
-	// });
-
-	// window.Notebooks = Backbone.Collection.extend({
-	// 	initialize: function(options){
-	// 		console.log('Notebooksss!');
-	// 		this.bind('add', options.view.render);
-	// 	},
-	// 	model: Notebook
-	// });
-
-			// var title = prompt('Please Key Title');
-		 //    this.noteModel = new Note({'title': title});
-			// this.notes.add(this.noteModel);
