@@ -59,7 +59,9 @@
         </div>
       </div>
       <!-- <span>(${count})</span> -->
-      <!-- Template !-->
+
+
+      <!-- ************Template************ !-->
       <!--Empty Template-->
       <script type="text/template" id="empty-list">
       <div class="view-port" id="view-port">
@@ -88,10 +90,12 @@
           <div class="content">
               <div class="result" id="result">
                 <div class="row">
-                  <div class="col-xs-12">
-                      <h2 class="tip-head">Take a Photo and Write a Note.</h2>
-                      <img class="init-img" src="./img/note-19-icon-256.png">
-                  </div>
+                  <ul class="item-list" id="item-list">
+                    <div class="col-xs-12">
+                        <h2 class="tip-head">Take a Photo and Write a Note.</h2>
+                        <img class="init-img" src="./img/note-19-icon-256.png">
+                    </div>
+                  </ul>
                 </div>
               </div>
           </div>
@@ -151,7 +155,7 @@
         </div>        
       </script>
 
-      <!--MainNav-->
+      <!--MainNavBar-->
       <script type="text/template" id="main-nav">
         <div class="navbar-header" id="navbar-header">
           <div class="row headers">
@@ -167,7 +171,7 @@
         </div>
       </script>
 
-      <!--Main List-->
+      <!--Main List Item-->
       <script type="text/template" id="main-list">
           <ul class="item-list" id="item-list">
             <li class="list-items" data-id="${id}"><img class="note-img" src="${img}"><h4>${title}</h4><h5 class="label label-info">${tag}</h5><p>${time}</p></li>
@@ -194,7 +198,7 @@
               </div>
             </nav>
           </div>
-          <div class="btn-group operation" data-id="${id}">
+          <div class="btn-group operation-btn" data-id="${id}">
             <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
             <button type="button" class="btn btn-lg btn-default" id="
             draw" data-id="${id}">Draw</button>
@@ -202,11 +206,14 @@
             <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
           </div>
           <div class="note-content">
-            <div id="take-img"></div>
-            <h2 class="title" id="title">${title}</h2>
-            <h3 class="tag label label-info" id="tag">${tag}</h3>
-            <p class="time" id="time">${time}</p>
-            <h4 class="memo" id="memo">${memo}</h4>
+            <div class="input-group edit-group">
+              <div id="take-img"></div>
+              <img class="show-img" id="show-img" src="${img}">
+              <div id="div-title"><h2 class="title" id="title">${title}</h2></div>
+              <div id="div-tag"><h3 class="tag label label-info" id="tag">${tag}</h3></div>
+              <div id="div-time"><h4 class="date" id="date">${time}</h4></div>
+              <div id="div-memo"><p class="memo" id="memo">${memo}</p></div>
+            </div>
           </div>
         </div>
       </script>
@@ -230,7 +237,7 @@
             </div>
           </nav>
         </div>
-        <div class="btn-group operation">
+        <div class="btn-group operation-btn">
           <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
           <button type="button" class="btn btn-lg btn-default active" id="
           draw" data-id="${id}">Draw</button>
@@ -243,6 +250,7 @@
 
       <!--Edit Mode-->
       <script type="text/template" id="edit">
+      <div class="wrap" id="wrap">
         <div>
           <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="navbar-header">
@@ -260,28 +268,64 @@
             </div>
           </nav>
         </div>
-        <div class="btn-group operation">
+        <div class="btn-group operation-btn">
           <button type="button" class="btn btn-default btn-lg" id="info" data-id="${id}">Info</button>
           <button type="button" class="btn btn-lg btn-default" id="
           draw" data-id="${id}">Draw</button>
           <button type="button" class="btn btn-lg btn-default active" id="edit-note" data-id="${id}">Edit</button>
           <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
         </div>
-        <div class="note-content">
-          <div id="div-title"><h2 class="title" id="title">Title : ${title}</h2><button id="edit-title" data-id="${id}">Edit</button></div>
-          <div id="div-tag"><h3 class="tag label label-info" id="tag">Tag : ${tag}</h3><button id="edit-tag" data-id="${id}">Edit</button></div>
-          <div id="div-time"><p class="time" id="time">Time : ${time}</p><button id="edit-time" data-id="${id}">Edit</button></div>
-          <div id="div-memo"><h4 class="memo" id="memo">Memo :</h4><p>${memo}</p><button id="edit-memo" data-id="${id}">Edit</button></div>
+        <div class="note-content" id="note-content">
+          <div class="input-group edit-group">
+            <div id="div-title"><h2 class="title" id="title">${title}</h2></div>
+            <div id="div-tag"><h3 class="tag label label-info" id="tag">${tag}</h4></div>
+            <div id="div-time"><h4 class="date" id="date">${time}</h2></div>
+            <div id="div-memo"><p class="memo" id="memo">${memo}</p></div>
+            <button class="btn btn-primary btn-block" id="edit-title" data-id="${id}" type="submit">Edit</button>
+          </div>
         </div>
+      </div>
       </script>
       <!--Edit Title-->
       <script type="text/template" id="edit-title">
-        Title : <input id="input-title" value="${title}" placeholder="Please Key in the Title"><button id="save-title-btn" data-id="${id}">Save</button>
+       <div class="note-content" id="note-content">
+          <div class="input-group edit-group">
+            <div id="div-title"><h5 class="title" id="title">Title : </h5><input type="text" id="input-title" value="${title}" placeholder="Please Key in the Title">
+            </div>
+            <div id="div-tag"><h5 class="tag" id="tag">Tag : </h5><input type="text" id="input-tag" value="${tag}" placeholder="Please Key in the Tag">
+            </div>
+            <div id="div-time"><h5 class="date" id="date">Date : </h5><input type="text" id="input-time" value="${time}" placeholder="Please Key in Time"></div>
+            <div id="div-memo"><h5 class="memo" id="memo">Memo : </h5><textarea id="input-memo">${memo}</textarea>
+            </div>
+            <button class="btn btn-primary btn-block" id="save-title-btn" data-id="${id}" type="submit">Save</button>
+          </div>
+        </div>
       </script>
       <!--Save Title-->
       <script type="text/template" id="save-title">
-        <h2 class="title" id="title">${title}</h2><button id="edit-title" data-id="${id}">Edit</button>
+        <div class="note-content" id="note-content">
+          <div class="input-group edit-group">
+            <div id="div-title"><h2 class="title" id="title">${title}</h2></div>
+            <div id="div-tag"><h3 class="tag label label-info" id="tag">${tag}</h3></div>
+            <div id="div-time"><h4 class="date" id="date">${time}</h4></div>
+            <div id="div-memo"><p class="memo" id="memo">${memo}</p></div>
+            <button class="btn btn-primary btn-block" id="edit-title" data-id="${id}" type="submit">Edit</button>
+          </div>
+        </div>
       </script>
+
+
+
+<!--           Title : <input id="input-title" value="${title}" placeholder="Please Key in the Title"><button id="save-title-btn" data-id="${id}">Save</button>
+          <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+
+
+        <h2 class="title" id="title">${title}</h2><button id="edit-title" data-id="${id}">Edit</button> -->
+<!-- 
+          <div id="div-title"><h2 class="title" id="title">Title : ${title}</h2><button id="edit-title" data-id="${id}">Edit</button></div>
+          <div id="div-tag"><h3 class="tag label label-info" id="tag">Tag : ${tag}</h3><button id="edit-tag" data-id="${id}">Edit</button></div>
+          <div id="div-time"><p class="time" id="time">Time : ${time}</p><button id="edit-time" data-id="${id}">Edit</button></div>
+          <div id="div-memo"><h4 class="memo" id="memo">Memo :</h4><p>${memo}</p><button id="edit-memo" data-id="${id}">Edit</button></div> -->
 
         <!--Script-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>

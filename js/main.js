@@ -1,4 +1,18 @@
 jQuery(function($){
+	//using setTimeout to fire a function when the user stops scrolling
+	var timer;
+    $(window).bind('scroll', function () {
+    	$('.toolbars').hide();
+        clearTimeout(timer);
+        timer = setTimeout( refresh , 2000);
+    });
+
+    var refresh = function () { 
+        $('.toolbars').show();
+        console.log('Stopped Scrolling'); 
+    };
+
+    //Backbone
 	var cid = 1;
 	window.Note = Backbone.Model.extend({
 		initialize: function(){
@@ -10,13 +24,12 @@ jQuery(function($){
 		},
 		defaults: {
 			id: 0,
-			title: '123',
+			title: 'Mozilla Rock',
 			tag: 'Firefox',
 			time: '2013/12/10',
 			memo: 'Firefox OS is awesome',
 			img: './img/firefox-256.jpg'
 		}
-
 	});
 
 	window.Notes = Backbone.Collection.extend({
@@ -26,7 +39,7 @@ jQuery(function($){
 			//this.bind('add', options.view.render);
 		},
 
-		localStorage: new Store("Notebook"),
+		localStorage: new Store("store-note"),
 
 		model: Note
 	});
@@ -66,11 +79,18 @@ jQuery(function($){
 
 		},
 
-		initialize: function(){
+		initialize: function(collection){
 			console.log('AppView');
 			_.bindAll(this, 'search', 'render', 'showNote', 'leftNote', 'doneNote', 'editNote', 'delteNote', 'editTitle', 'saveTitle', 'cameraActivity');
-			this.notes = new Notes({view: this});
+			// this.noteModel = new Note();
+			// this.noteModel.save();
+			this.notes = collection;
+			//var storeVar = localStorage["store-note"];
+ 			//alert(this.notes.length);
+			this.notes.fetch();
+			this.notes.toJSON();
 			this.render();
+			//this.notes.on("add", this.renderThing, this);
 			// this.model.bind('change', this.render);
 			// this.model.bind('destory', this.remove);
 		},
@@ -84,19 +104,32 @@ jQuery(function($){
 		},
 
 		render: function(){
-			var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
-			$('#item-list').html(element);
 			// alert('render');
+			if(this.notes.length > 0){
+				var element = jQuery.tmpl(this.mainListTemplate, this.notes.toJSON());
+				$('#item-list').html(element);		
+			}
+			else{
+				var element = jQuery.tmpl(this.emptyTemplate);
+				$('#view-port').html(element);
+			}
 			return this;
 		},
 
 		showNote: function(e){
 			//alert(1);
 			console.log($(e.currentTarget).attr('data-id'));
-			alert($(e.currentTarget).attr('data-id'));
+			//alert($(e.currentTarget).attr('data-id'));
 			var element = jQuery.tmpl(this.createNoteTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
-			alert(this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
+			//alert(this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
 			$('#view-port').html(element);
+
+		    // var img = document.createElement("img");
+
+		    // img.src = this.notes.get($(e.currentTarget).attr('data-id'))['img'];
+		    // // Present that image in your app
+		    // var imagePresenter = document.querySelector("#take-img");
+		    // imagePresenter.appendChild(img);
 			return this;
 		},
 
@@ -126,17 +159,23 @@ jQuery(function($){
 
 		editTitle: function(e){
 			var element = jQuery.tmpl(this.editTitleTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
-			$('#div-title').html(element);
+			$('#note-content').html(element);
 		},
 
 		saveTitle: function(e){
 			var editTitle = $('#input-title').val();
+			var editTag = $('#input-tag').val();
+			var editTime = $('#input-time').val();
+			var editMemo = $('#input-memo').val();
 			// alert(editTitle);
-			this.notes.get($(e.currentTarget).attr('data-id')).set({'title': editTitle});
+			this.notes.get($(e.currentTarget).attr('data-id')).set({'title': editTitle, 'tag': editTag, 'time': editTime, 'memo': editMemo});
 			//alert(this.noteModel);
 		    			
 			var element = jQuery.tmpl(this.saveTitleTemplate, this.notes.get($(e.currentTarget).attr('data-id')).toJSON());
-			$('#div-title').html(element);
+			
+			$('#note-content').html(element);
+			this.notes.get($(e.currentTarget).attr('data-id')).save();
+			
 		},
 
 		delteNote: function(e){
@@ -188,19 +227,21 @@ jQuery(function($){
 			    self.noteModel = new Note();
 			    self.noteModel.set({'id': self.noteModel.cid});
 			    // cid++;
-
 			    //alert(cid);
 				self.notes.add(self.noteModel);
+				self.noteModel.save();
 		    	var element = jQuery.tmpl(self.createNoteTemplate, self.noteModel.toJSON());
 				$('#view-port').html(element);
 			    var img = document.createElement("img");
+			    $('#show-img').hide();
+
 			    img.src = window.URL.createObjectURL(this.result.blob);
+			    img.className = 'create-photo';
 			    // Present that image in your app
 			    var imagePresenter = document.querySelector("#take-img");
 			    imagePresenter.appendChild(img);
-			    
-
-
+			    self.noteModel.set({'img': img.src});
+			    self.noteModel.save();
 				// }
 			};
  
@@ -211,54 +252,8 @@ jQuery(function($){
 
 	});
 
-	window.LeftPanelView = Backbone.View.extend({
-		el: '#left-panel',
-		template: $('#nb-list-tmpl').template(),
-
-		initialize: function(){
-			console.log('left-panel!');
-			_.bindAll(this, 'render', 'newNoteBook', 'writeNewNote', 'deleteNoteBook');
-			this.notebooks = new Notebooks({view: this});
-		},
-		events: {
-			'click #add-notebook': 'newNoteBook',
-			'dblclick .nb-list-items': 'deleteNoteBook'
-		},
-		newNoteBook: function(){
-			var title = prompt('Key the Notebook name');
-			this.notebookModel = new Notebook({'booktitle': title});
-			this.notebooks.add(this.notebookModel);
-			this.notes = new Notes({});
-		},
-		writeNewNote: function(){
-			if($('.wrap').hasClass('left')){
-				$('.wrap').removeClass('left');
-				$('.left-panel').hide();
-			}
-			else{
-				$('.wrap').addClass('left');
-				$('.left-panel').show();
-			}
-		},
-		deleteNoteBook: function(e){
-			$(e.currentTarget).remove();
-			this.notebooks.remove(this.notebooks.models);
-		},
-		render: function(){
-			var element = jQuery.tmpl(this.template, this.notebooks.toJSON());
-			$('#nb-list-item').html(element);
-			return this;
-		}
-	});
-
-	window.RightPanelView = Backbone.View.extend({
-		className: 'right-panel',
-		initialize: function(){
-			console.log('right-panel!');
-		}
-	});
-
-	window.Main = new MainView;
+	var collection = new Notes;
+	window.Main = new MainView(collection);
 	//window.LeftPanel = new LeftPanelView;
 	//window.RightPanel = new RightPanelView;
 });
