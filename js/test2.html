@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="400"></canvas>
+    <canvas id="xd" width="578" height="400"></canvas>
+    <img id="elephant" src="about:blank" alt="A close up of an elephant">
+    <script>
+      // var canvas = document.getElementById('myCanvas');
+      // var context = canvas.getContext('2d');
+        var canvas, context, image;
+        var elephant = document.getElementById("elephant")
+        canvas = document.createElement('canvas');
+        canvas.width = 470;
+        canvas.height = 470;
+        context = canvas.getContext('2d');
+        image = new Image();
+        image.addEventListener('load', function(){
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        }, false);
+        storageFiles.elephant = canvas.toDataURL("image/png");
+        //image.src = dataURL;
+      image.setAttribute('src' ,localStorage.getItem('imgg'));
+      // console.log(imageObj.src);
+      // canvas.appendChild(imageObj);
+
+      // imageObj.onload = function() {
+      //   context.drawImage(imageObj, 69, 50);
+
+      // };
+      // imageObj.src = 'http://www.html5canvastutorials.com/demos/assets/darth-vader.jpg';
+      // var dataURL = canvas.toDataURL();
+      
+      // localStorage.setItem('imgg', dataURL);
+
+      // alert(localStorage.getItem('imgg'));
+      //loadCanvas();
+      //document.getElementById('xd').appendChild(img);
+
+
+      // function loadCanvas(dataURL) {
+      //   var canvas = document.getElementById('xd');
+      //   var context = canvas.getContext('2d');
+
+      //   // load image from data url
+        // var imageObj = new Image();
+        // imageObj.onload = function() {
+        //   context.drawImage(this, 0, 0);
+        // };
+
+        // imageObj.src = dataURL;
+      // }
+      
+    </script>
+  </body>
+</html>
+<!-- <!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200" style="display:none;"></canvas>
+    <img id="canvasImg" alt="Right click to save me!">
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 69, 50);
+      };
+      imageObj.src = '../img/logo.png';
+
+     
+      // save canvas image as data url (png format by default)
+      var dataURL = canvas.toDataURL();
+
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
+      document.getElementById('canvasImg').src = dataURL;
+
+      
+    </script>
+  </body>
+</html> -->

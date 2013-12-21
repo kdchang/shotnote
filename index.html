@@ -178,6 +178,13 @@
           </ul>
       </script>
 
+      <!--Search List Item-->
+      <script type="text/template" id="search-list">
+          <ul class="item-list" id="item-list">
+            <li class="list-items" data-id="${id}"><img class="note-img" src="${img}"><h4>${title}</h4><h5 class="label label-info">${tag}</h5><p>${time}</p></li>
+          </ul>
+      </script>
+
       <!--Create a Note-->
       <script type="text/template" id="create-a-note">
         <div class="wrap" id="wrap">
@@ -200,8 +207,7 @@
           </div>
           <div class="btn-group operation-btn" data-id="${id}">
             <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
-            <button type="button" class="btn btn-lg btn-default" id="
-            draw" data-id="${id}">Draw</button>
+            <button type="button" class="btn btn-lg btn-default" id="draw" data-id="${id}">Draw</button>
             <button type="button" class="btn btn-lg btn-default" id="edit-note" data-id="${id}">Edit</button>
             <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
           </div>
@@ -219,13 +225,14 @@
       </script>
       
       <!--Draw Mode-->
-      <script type="text/template" id="draw">
+      <script type="text/template" id="draw-mode">
+      <div class="wrap" id="wrap">
         <div>
           <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="navbar-header">
               <div class="row headers">
                 <div class="col-xs-3">
-                <span class="glyphicon glyphicon-chevron-left btn btn-lg lbt" id="give-up"></span>
+                <span class="glyphicon glyphicon-chevron-left btn btn-lg lbt" id="check"></span>
                 </div>
                 <div class="col-xs-6">
                   <div class="logo" id="logo"><h1>ShotNote</h1></div>
@@ -238,14 +245,35 @@
           </nav>
         </div>
         <div class="btn-group operation-btn">
-          <button type="button" class="btn btn-default btn-lg active" id="info" data-id="${id}">Info</button>
+          <button type="button" class="btn btn-default btn-lg" id="info" data-id="${id}">Info</button>
           <button type="button" class="btn btn-lg btn-default active" id="
           draw" data-id="${id}">Draw</button>
           <button type="button" class="btn btn-lg btn-default" id="edit-note" data-id="${id}">Edit</button>
           <button type="button" class="btn btn-lg btn-default" id="delete-note" data-id="${id}">Delete</button>
         </div>
         <div id="take-img"></div>
-        <buttton>Save Draw</button> 
+
+        <canvas id="m"></canvas>
+
+    <p style="text-align: center">
+        筆色：
+        <input id="Radio1" checked="false" name="R" type="radio" value="V1"  />紅
+        <input id="Radio2" checked="false" name="R" type="radio" value="V1"  />綠
+        <input id="Radio3" checked="false" name="R" type="radio" value="V1"  />藍
+        <input id="Radio4" checked="true" name="R" type="radio" value="V1"  />黑</p>
+    <p style="text-align: center">
+        筆粗：
+        <input id="Radio5" checked="true" name="W" type="radio" value="V1"  />1px
+        <input id="Radio6" checked="false" name="W" type="radio" value="V1"  />2px
+        <input id="Radio7" checked="false" name="W" type="radio" value="V1"  />3px
+        <input id="Radio8" checked="false" name="W" type="radio" value="V1"  />5px
+        <input id="Radio9" checked="false" name="W" type="radio" value="V1"  />10px</p>
+    <p style="text-align: center">
+        <input id="Button1" type="button" value="清除畫面"  />&nbsp;&nbsp;
+        <input id="Button2" type="button" value="輸出影像"  /></p>
+    <p style="text-align: center">
+
+      </div>
       </script>
 
       <!--Edit Mode-->

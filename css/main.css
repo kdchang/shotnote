@@ -14,6 +14,7 @@
 body {
 	overflow-x: hidden;
 	overflow-y: auto;
+	font-family: "Lantinghei TC", Hiragino Kaku Gothic Pro, Heiti TC, "微軟正黑體", "STHeiti Light", "Microsoft Yahei", "Microsoft JhengHei", Helvetica, sans-serif;
 }
 
 .view-port{
@@ -36,18 +37,19 @@ body {
 .navbar {
 	margin-top: 0px; 
 	background-image: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		color-stop(0, #75D923),
-		color-stop(1, #3C7805)
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #1A4E59),
+	color-stop(1, #404040)
 	);
-	background-image: -o-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
-	background-image: -moz-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
-	background-image: -webkit-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
-	background-image: -ms-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
-	background-image: linear-gradient(to bottom, #75D923 0%, #3C7805 100%);
-	border-bottom: 1px solid #227700;
+	background-image: -o-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -moz-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -webkit-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
+	background-image: linear-gradient(to bottom, #1A4E59 0%, #404040 100%);
+
+	border-bottom: 1px solid #003C9D;
 }
 
 .navbar-header {
@@ -150,34 +152,35 @@ li p {
 	width: 100%;
 	text-align: center;
 	background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, #1A4E59),
-	color-stop(1, #404040)
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #75D923),
+		color-stop(1, #3C7805)
 	);
-	background-image: -o-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
-	background-image: -moz-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
-	background-image: -webkit-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
-	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #404040 100%);
-	background-image: linear-gradient(to bottom, #1A4E59 0%, #404040 100%);
+	background-image: -o-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -moz-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -webkit-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -ms-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: linear-gradient(to bottom, #75D923 0%, #3C7805 100%);
 	border: none;
 	border-radius: 0px;
 }
 
 .toolbar:hover {
+
 	background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, #1A4E59),
-	color-stop(1, #4F4F4F)
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #75D923),
+		color-stop(1, #3C7805)
 	);
-	background-image: -o-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
-	background-image: -moz-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
-	background-image: -webkit-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
-	background-image: -ms-linear-gradient(bottom, #1A4E59 0%, #4F4F4F 100%);
-	background-image: linear-gradient(to bottom, #1A4E59 0%, #4F4F4F 100%);
+	background-image: -o-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -moz-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -webkit-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: -ms-linear-gradient(bottom, #75D923 0%, #3C7805 100%);
+	background-image: linear-gradient(to bottom, #75D923 0%, #3C7805 100%);
 }
 
 .toolbar .camera {
@@ -301,7 +304,8 @@ li p {
 }
 
 .operation-btn button {
-	padding: 10px 20px; 
+	padding: 10px 18px; 
+	border: 1px solid #FFFFFF;
 }
 
 .edit-group {
@@ -330,5 +334,25 @@ li p {
 	width: 300px;
 }
 
+/*Draw Mode*/
+#save-draw {
+	display: block;
+	margin: 0 auto;
+	background-color: #39DDDF;
+	padding: 10px 30px;
+}
 
+#m {
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	width: 300px;
+	height: 400px;
 
+}
+
+#start {
+	width: 100px;
+	background-color: #39DDDF;
+	padding: 10px 30px;
+}

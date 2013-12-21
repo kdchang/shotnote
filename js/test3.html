@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var img = new Image();
+img.src = '../img/firefox-os.png';
+img.load = function() {
+ var canvas = document.creareElement('canvas');
+ document.body.appendChild(canvas);
+ var context = canvas.getContext('2d');
+ context.drawImage(img, 0, 0);
+ var data = context.getImageData(0, 0, img.width, img.height).data;
+ alert(data);
+ localStorage.setItem('image', data); // save image data
+};
+
+
+window.onload = function() {
+ var picture = localStorage.getItem('imgg');
+ var image = document.createElement('img');
+ image.src = picture;
+ document.body.appendChild(image);
+};
+
+</script>
+</body>
+</html>
